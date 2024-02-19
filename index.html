@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('wedding2.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Cormorant Garamond', serif;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+
+        }
+
+        /* Invitation Text Animation */
+        h1 span {
+            display: inline-block;
+            opacity: 0;
+            animation: fade-in-h1 1s ease forwards;
+        }
+
+        @keyframes fade-in-h1 {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Animation */
+        .animated-text {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: revealLetters 2s steps(40, end);
+        }
+
+        @keyframes revealLetters {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid white;
+            background-color: white;
+            color:black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            width: 100%;
+            transition: border-bottom-color 0.3s ease;
+
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-bottom-color: gold;
+        }
+
+        button {
+            background-color: gold;
+            /* soft gold */
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #ffdf00;
+            /* lighter gold */
+            color: black;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            <span>You</span>
+            <span>are cordially invited</span>
+            <span>by the Sulake family</span>
+            <span>to celebrate the union</span>
+            <span>of two lovebirds,</span>
+            <span>as Vanitha and Subhash</span>
+            <span>join together in marriage.</span>
+        </h1>
+
+        <h2><span class="animated-text">Enter your name</span></h2>
+        <form id="myForm">
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            var name = document.getElementById("name").value;
+            if (!name.trim()) {
+                alert("Please enter your name.");
+                return;
+            }
+            sessionStorage.setItem("name", name);
+            window.location.href = "next-page.html";
+        }
+
+        // Retrieve name from sessionStorage and display it
+        var userName = sessionStorage.getItem("name");
+        if (userName) {
+            document.getElementById("userName").innerText = userName;
+        }
+
+        // Activate Carousel
+        $('.carousel').carousel({
+            interval: 2000 // Automatically move slides every 2 seconds
+        });
+    </script>
+</body>
+
+</html>
